@@ -40,6 +40,7 @@ export interface Show {
   image: string | null;
   order: number;
   is_active: boolean;
+  episodes: Episode[];
 }
 
 export interface Episode {

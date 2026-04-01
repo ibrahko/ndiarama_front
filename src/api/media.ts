@@ -1,6 +1,6 @@
-import api from "./client";
+const BASE = "http://127.0.0.1:8000";
 
-export interface Episode {
+export interface MediaEpisode {
   id: number;
   show: number;
   show_slug: string;
@@ -8,7 +8,7 @@ export interface Episode {
   title: string;
   slug: string;
   description: string;
-  media_type: "audio" | "video";
+  media_type: "video" | "audio";
   media_url: string;
   duration: string;
   published_at: string;
@@ -16,7 +16,7 @@ export interface Episode {
   is_featured: boolean;
 }
 
-export interface Show {
+export interface MediaShow {
   id: number;
   title: string;
   slug: string;
@@ -25,10 +25,23 @@ export interface Show {
   image: string | null;
   order: number;
   is_active: boolean;
-  episodes: Episode[];
+  episodes: MediaEpisode[];
 }
 
-export async function fetchShows(): Promise<Show[]> {
-  const res = await api.get<Show[]>("/media/shows/");
-  return res.data;
+export async function fetchShows(): Promise<MediaShow[]> {
+  const res = await fetch(`${BASE}/api/media/shows/`);
+  if (!res.ok) throw new Error("Erreur chargement émissions");
+  return res.json();
+}
+
+export async function fetchEpisodes(): Promise<MediaEpisode[]> {
+  const res = await fetch(`${BASE}/api/media/episodes/`);
+  if (!res.ok) throw new Error("Erreur chargement épisodes");
+  return res.json();
+}
+
+export async function fetchShowBySlug(slug: string): Promise<MediaShow> {
+  const res = await fetch(`${BASE}/api/media/shows/${slug}/`);
+  if (!res.ok) throw new Error("Émission introuvable");
+  return res.json();
 }
