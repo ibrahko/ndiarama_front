@@ -1,6 +1,7 @@
 import React from "react";
 import type { AppRoute } from "../../types/shared";
 import { NAV_ITEMS, SITE_META } from "../../utils/constants";
+import logo from "../../assets/logo.jpg"; 
 
 interface HeaderProps {
   currentRoute: AppRoute;
@@ -29,22 +30,31 @@ const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={() => onNavigate("home")}
-            className="text-left"
-            aria-label="Aller à l’accueil"
+            className="flex items-center gap-3 text-left"
+            aria-label="Aller à l'accueil"
           >
-            <p className="text-xs uppercase tracking-[0.22em] text-[#b27a54]">
-              NDIARAMA
-            </p>
-            <h1 className="text-sm font-semibold text-[#3d2a22] sm:text-base">
-              {SITE_META.name}
-            </h1>
+            {/* LOGO */}
+            <img
+              src={logo}
+              alt="NDIARAMA logo"
+              className="h-14 w-auto object-contain"
+            />
+
+            {/* TEXTE */}
+            <div>
+              <p className="text-xs uppercase tracking-[0.22em] text-[#b27a54]">
+                NDIARAMA
+              </p>
+              <h1 className="text-sm font-semibold text-[#3d2a22] sm:text-base">
+                {SITE_META.name}
+              </h1>
+            </div>
           </button>
         </div>
 
         <nav className="hidden items-center gap-2 lg:flex" aria-label="Navigation secondaire">
           {NAV_ITEMS.map((item) => {
             const isActive = currentRoute === item.key;
-
             return (
               <button
                 key={item.key}
