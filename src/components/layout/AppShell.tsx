@@ -8,12 +8,14 @@ import Sidebar from "./Sidebar";
 interface AppShellProps {
   currentRoute: AppRoute;
   onNavigate: (route: AppRoute) => void;
+  onOpenNewsletter: () => void;
   children: React.ReactNode;
 }
 
 const AppShell: React.FC<AppShellProps> = ({
   currentRoute,
   onNavigate,
+  onOpenNewsletter,
   children,
 }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -61,7 +63,7 @@ const AppShell: React.FC<AppShellProps> = ({
           {children}
         </main>
 
-        <Footer onNavigate={onNavigate} />
+        <Footer onNavigate={onNavigate} onOpenNewsletter={onOpenNewsletter} />
       </div>
     </div>
   );

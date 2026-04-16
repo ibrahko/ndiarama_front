@@ -7,6 +7,7 @@ import HomeFeaturedEpisodes from "../components/home/HomeFeaturedEpisodes";
 import HomeTestimonials from "../components/home/HomeTestimonials";
 import HomeTeam from "../components/home/HomeTeam";
 import HomeCommunity from "../components/home/HomeCommunity";
+import NewsletterPopup from "../components/NewsletterPopup";
 
 export default function Home() {
   const [data, setData] = useState<HomePayload | null>(null);
@@ -33,6 +34,7 @@ export default function Home() {
 
   return (
     <main className="bg-[#f8f4ef] text-ndiarama-ink">
+      <NewsletterPopup /> 
       <HomeHero settings={settings} />
       <HomeServices shows={shows} highlighted_services={highlighted_services} />
       <HomeFeaturedEpisodes featured_episodes={featured_episodes} />

@@ -4,7 +4,12 @@ import { useState, useEffect } from "react";
 import { X, Mail, MessageCircle, CheckCircle } from "lucide-react";
 import { subscribeNewsletter } from "../api/communication";
 
-const NewsletterPopup = () => {
+interface NewsletterPopupProps {
+    forceOpen?: boolean;
+    onClose?: () => void;
+  }
+
+const NewsletterPopup = ({ forceOpen = false, onClose }: NewsletterPopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -13,17 +18,27 @@ const NewsletterPopup = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Ne pas afficher si l'utilisateur s'est déjà abonné
+    // Ouverture forcée via bouton footer
+    if (forceOpen) {
+      setIsVisible(true);
+      return;
+    }
+  
+    // Ouverture automatique après 5s
     const alreadySubscribed = localStorage.getItem("ndiarama_newsletter");
     if (alreadySubscribed) return;
-
-    // Afficher après 5 secondes
+  
     const timer = setTimeout(() => setIsVisible(true), 5000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [forceOpen]);
 
   const handleClose = () => {
     setIsVisible(false);
+    setSubmitted(false);
+    setError(null);
+    setEmail("");
+    setWhatsapp("");
+    onClose?.();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -8,12 +8,20 @@ export interface MediaEpisode {
   title: string;
   slug: string;
   description: string;
-  media_type: "video" | "audio";
+  media_type: "audio" | "video" | "both";
   media_url: string;
   duration: string;
   published_at: string;
   is_published: boolean;
   is_featured: boolean;
+  youtube_url: string;
+  youtube_video_id: string | null;
+  youtube_embed_url: string | null;
+  spotify_url: string;
+  apple_podcast_url: string;
+  thumbnail: string | null;
+  has_video: boolean;
+  has_audio: boolean;
 }
 
 export interface MediaShow {
@@ -26,6 +34,9 @@ export interface MediaShow {
   order: number;
   is_active: boolean;
   episodes: MediaEpisode[];
+  youtube_channel_url: string;
+  spotify_show_url: string;
+  apple_podcast_url: string;
 }
 
 export async function fetchShows(): Promise<MediaShow[]> {
