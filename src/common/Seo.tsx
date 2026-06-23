@@ -9,8 +9,10 @@ interface SeoProps {
 
 const BASE_TITLE = "NDIARAMA Media & Consulting";
 const DEFAULT_DESCRIPTION =
-  "NDIARAMA accompagne les jeunes africains vers les meilleures opportunites : bourses, leadership, medias et consulting.";
-const DEFAULT_IMAGE = "/og-image.jpg";
+  "NDIARAMA accompagne les jeunes africains vers les meilleures opportunités : bourses, leadership, médias et consulting.";
+// VITE_SITE_URL permet de générer des URLs absolues pour og:image et canonical
+const SITE_URL = (import.meta.env.VITE_SITE_URL as string | undefined) ?? "";
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 function setMeta(selector: string, value: string) {
   let el = document.querySelector<HTMLMetaElement>(selector);
@@ -43,7 +45,8 @@ export default function Seo({ title, description, image, url }: SeoProps) {
     title === BASE_TITLE ? title : `${title} | ${BASE_TITLE}`;
   const desc = description ?? DEFAULT_DESCRIPTION;
   const img = image ?? DEFAULT_IMAGE;
-  const canonical = url ?? window.location.href.split("#")[0];
+  // Canonical : utiliser VITE_SITE_URL en prod pour éviter les URLs localhost
+  const canonical = url ?? `${SITE_URL}${window.location.pathname}`;
 
   useEffect(() => {
     document.title = fullTitle;

@@ -102,14 +102,16 @@ export default function ContactForm() {
         {/* Name + Email */}
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label className="block text-xs font-medium text-ndiarama-dark mb-1.5">
+            <label htmlFor="contact-name" className="block text-xs font-medium text-ndiarama-dark mb-1.5">
               Nom complet
             </label>
             <input
+              id="contact-name"
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
+              autoComplete="name"
               placeholder="Ibrahima Koné"
               className={`w-full rounded-lg border px-4 py-2.5 text-xs text-ndiarama-dark placeholder:text-ndiarama-ink/35 focus:outline-none transition ${
                 errors.name
@@ -123,14 +125,16 @@ export default function ContactForm() {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-ndiarama-dark mb-1.5">
+            <label htmlFor="contact-email" className="block text-xs font-medium text-ndiarama-dark mb-1.5">
               Adresse email
             </label>
             <input
+              id="contact-email"
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
+              autoComplete="email"
               placeholder="ton@email.com"
               className={`w-full rounded-lg border px-4 py-2.5 text-xs text-ndiarama-dark placeholder:text-ndiarama-ink/35 focus:outline-none transition ${
                 errors.email
@@ -146,10 +150,11 @@ export default function ContactForm() {
 
         {/* Subject */}
         <div>
-          <label className="block text-xs font-medium text-ndiarama-dark mb-1.5">
+          <label htmlFor="contact-subject" className="block text-xs font-medium text-ndiarama-dark mb-1.5">
             Sujet
           </label>
           <select
+            id="contact-subject"
             name="subject"
             value={form.subject}
             onChange={handleChange}
@@ -171,10 +176,11 @@ export default function ContactForm() {
 
         {/* Message */}
         <div>
-          <label className="block text-xs font-medium text-ndiarama-dark mb-1.5">
+          <label htmlFor="contact-message" className="block text-xs font-medium text-ndiarama-dark mb-1.5">
             Message
           </label>
           <textarea
+            id="contact-message"
             name="message"
             value={form.message}
             onChange={handleChange}

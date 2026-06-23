@@ -137,17 +137,21 @@ const NewsletterPopup = ({ forceOpen = false, onClose }: NewsletterPopupProps) =
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {/* Email */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Email <span className="text-red-500">*</span>
+                    <label htmlFor="newsletter-email" className="block text-sm font-medium text-gray-700 mb-1.5">
+                      Email <span className="text-red-500" aria-hidden="true">*</span>
+                      <span className="sr-only">(obligatoire)</span>
                     </label>
                     <div className="relative">
                       <Mail
                         size={16}
                         className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                        aria-hidden="true"
                       />
                       <input
+                        id="newsletter-email"
                         type="email"
                         required
+                        autoComplete="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="votre@email.com"
@@ -163,7 +167,7 @@ const NewsletterPopup = ({ forceOpen = false, onClose }: NewsletterPopupProps) =
 
                   {/* WhatsApp */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                    <label htmlFor="newsletter-whatsapp" className="block text-sm font-medium text-gray-700 mb-1.5">
                       WhatsApp{" "}
                       <span className="text-gray-400 font-normal">(optionnel)</span>
                     </label>
@@ -171,9 +175,12 @@ const NewsletterPopup = ({ forceOpen = false, onClose }: NewsletterPopupProps) =
                       <MessageCircle
                         size={16}
                         className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                        aria-hidden="true"
                       />
                       <input
+                        id="newsletter-whatsapp"
                         type="tel"
+                        autoComplete="tel"
                         value={whatsapp}
                         onChange={(e) => setWhatsapp(e.target.value)}
                         placeholder="+223 XX XX XX XX"

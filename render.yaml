@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: ndiarama-front
+    env: static
+    plan: free
+    region: frankfurt
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: "https://ndiarama-backend.onrender.com"
+      - key: VITE_SITE_URL
+        value: "https://ndiarama-front.onrender.com"
+      - key: NODE_VERSION
+        value: "20"
