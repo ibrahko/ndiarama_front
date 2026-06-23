@@ -3,7 +3,8 @@ export type AppRoute =
   | "media"
   | "services"
   | "community"
-  | "contact";
+  | "contact"
+  | "legal";
 
 export interface NavItem {
   key: AppRoute;

@@ -1,3 +1,8 @@
+/**
+ * Sidebar de navigation desktop (hidden on mobile).
+ * Supporte les modes collapsed (icônes seules, 96 px) et expanded (288 px).
+ * Reçoit les props depuis AppShell via le hook useSidebar.
+ */
 import React from "react";
 import type { AppRoute } from "../../types/shared";
 import { NAV_ITEMS } from "../../utils/constants";

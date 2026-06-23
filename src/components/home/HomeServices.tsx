@@ -1,12 +1,7 @@
 import React from "react";
 import { Show, Service } from "../../api/home";
 
-const backendBaseUrl = "http://127.0.0.1:8000";
-const resolveMediaUrl = (url?: string | null) => {
-  if (!url) return null;
-  if (url.startsWith("http://") || url.startsWith("https://")) return url;
-  return `${backendBaseUrl}${url}`;
-};
+import { resolveMediaUrl } from "../../utils/media";
 
 interface Props {
   shows: Show[];

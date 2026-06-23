@@ -8,6 +8,7 @@ import HomeTestimonials from "../components/home/HomeTestimonials";
 import HomeTeam from "../components/home/HomeTeam";
 import HomeCommunity from "../components/home/HomeCommunity";
 import NewsletterPopup from "../components/NewsletterPopup";
+import Seo from "../common/Seo";
 
 export default function Home() {
   const [data, setData] = useState<HomePayload | null>(null);
@@ -34,6 +35,7 @@ export default function Home() {
 
   return (
     <main className="bg-[#f8f4ef] text-ndiarama-ink">
+      <Seo title="Accueil" description="NDIARAMA accompagne les jeunes africains vers les meilleures opportunites : bourses, leadership, medias et consulting." />
       <NewsletterPopup /> 
       <HomeHero settings={settings} />
       <HomeServices shows={shows} highlighted_services={highlighted_services} />

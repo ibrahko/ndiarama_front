@@ -20,13 +20,13 @@ export default function ServicesCTA() {
             <div className="flex flex-col gap-2 sm:flex-row md:flex-col">
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-[10px] bg-white px-5 py-3 text-xs font-semibold text-[#2b211d] transition hover:bg-[#f4ece6] whitespace-nowrap"
+                className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 text-xs font-semibold text-[#2b211d] transition hover:bg-[#f4ece6] whitespace-nowrap"
               >
                 Nous contacter →
               </a>
               <a
                 href="/community"
-                className="inline-flex items-center justify-center rounded-[10px] border border-white/20 bg-transparent px-5 py-3 text-xs font-semibold text-white transition hover:bg-white/10 whitespace-nowrap"
+                className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-transparent px-5 py-3 text-xs font-semibold text-white transition hover:bg-white/10 whitespace-nowrap"
               >
                 Explorer la communauté
               </a>

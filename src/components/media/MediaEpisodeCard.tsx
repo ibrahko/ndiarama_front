@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MediaEpisode } from "../../api/media";
+import AudioProgress from "../../media/AudioProgress";
 
 interface Props {
   episode: MediaEpisode;
@@ -47,33 +48,12 @@ export default function MediaEpisodeCard({ episode }: Props) {
               className="w-full aspect-video bg-black"
             />
           ) : isAudio && episode.media_url ? (
-            /* Lecteur audio */
-            <div className="bg-gradient-to-br from-[#ead7c9] via-[#f5ede7] to-[#d7b09a]
-                            px-4 pt-5 pb-3">
-              <div className="flex items-end justify-center gap-[3px] h-10 mb-3">
-                {Array.from({ length: 20 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-1 rounded-full bg-ndiarama-text/60"
-                    style={{
-                      animation: `audioBar 0.8s ease-in-out ${i * 0.05}s infinite alternate`,
-                    }}
-                  />
-                ))}
-              </div>
-              <audio
-                src={episode.media_url}
-                controls
-                autoPlay
-                className="w-full"
-              />
-              <style>{`
-                @keyframes audioBar {
-                  from { height: 15%; }
-                  to   { height: 90%; }
-                }
-              `}</style>
-            </div>
+            /* Lecteur audio custom avec barre de progression */
+            <AudioProgress
+              src={episode.media_url}
+              title={episode.title}
+              autoPlay
+            />
           ) : null}
 
           {/* Bouton fermer */}

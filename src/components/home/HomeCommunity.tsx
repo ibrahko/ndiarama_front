@@ -52,13 +52,13 @@ export default function HomeCommunity({ settings }: Props) {
             <div className="mt-5 flex flex-col gap-2 sm:flex-row">
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-[10px] bg-white px-4 py-2.5 text-xs font-semibold text-[#2b211d] transition hover:bg-[#f4ece6]"
+                className="inline-flex items-center justify-center rounded-lg bg-white px-4 py-2.5 text-xs font-semibold text-[#2b211d] transition hover:bg-[#f4ece6]"
               >
                 Nous contacter
               </a>
               <a
                 href="/community"
-                className="inline-flex items-center justify-center rounded-[10px] border border-white/18 bg-transparent px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-white/10"
+                className="inline-flex items-center justify-center rounded-lg border border-white/18 bg-transparent px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-white/10"
               >
                 Explorer la communauté
               </a>

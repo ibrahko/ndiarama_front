@@ -68,7 +68,7 @@ export default function ServiceCard({ service }: Props) {
       <div className="px-5 pb-4">
         <a
           href="/contact"
-          className="inline-flex w-full items-center justify-center rounded-[10px] bg-ndiarama-text px-4 py-2.5 text-xs font-semibold text-white transition hover:opacity-90"
+          className="inline-flex w-full items-center justify-center rounded-lg bg-ndiarama-text px-4 py-2.5 text-xs font-semibold text-white transition hover:opacity-90"
         >
           Demander un accompagnement →
         </a>

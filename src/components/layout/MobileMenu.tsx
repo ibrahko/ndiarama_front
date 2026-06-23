@@ -1,3 +1,8 @@
+/**
+ * Menu de navigation mobile (overlay plein écran, visible < lg).
+ * S'ouvre via le bouton hamburger du Header.
+ * Fermeture automatique à chaque changement de route.
+ */
 import React from "react";
 import type { AppRoute } from "../../types/shared";
 import { NAV_ITEMS } from "../../utils/constants";

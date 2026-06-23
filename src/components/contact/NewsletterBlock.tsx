@@ -40,7 +40,7 @@ export default function NewsletterBlock() {
       </div>
 
       {sent ? (
-        <div className="rounded-[10px] bg-[#d4dfcc] px-4 py-3 text-xs font-medium text-[#2e5c10]">
+        <div className="rounded-lg bg-[#d4dfcc] px-4 py-3 text-xs font-medium text-[#2e5c10]">
           ✓ Merci {firstName || ""} ! Tu es bien inscrit(e).
         </div>
       ) : (
@@ -50,7 +50,7 @@ export default function NewsletterBlock() {
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="Prénom (optionnel)"
-            className="w-full rounded-[10px] border border-[#e3d4c8] bg-white px-4 py-2.5 text-xs text-ndiarama-dark placeholder:text-ndiarama-ink/35 focus:outline-none focus:border-ndiarama-text transition"
+            className="w-full rounded-lg border border-[#e3d4c8] bg-white px-4 py-2.5 text-xs text-ndiarama-dark placeholder:text-ndiarama-ink/35 focus:outline-none focus:border-ndiarama-text transition"
           />
           <input
             type="email"
@@ -58,7 +58,7 @@ export default function NewsletterBlock() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ton@email.com"
             required
-            className="w-full rounded-[10px] border border-[#e3d4c8] bg-white px-4 py-2.5 text-xs text-ndiarama-dark placeholder:text-ndiarama-ink/35 focus:outline-none focus:border-ndiarama-text transition"
+            className="w-full rounded-lg border border-[#e3d4c8] bg-white px-4 py-2.5 text-xs text-ndiarama-dark placeholder:text-ndiarama-ink/35 focus:outline-none focus:border-ndiarama-text transition"
           />
           {error && (
             <p className="text-[10px] text-red-500 px-1">{error}</p>
@@ -66,7 +66,7 @@ export default function NewsletterBlock() {
           <button
             type="submit"
             disabled={loading || !email}
-            className="rounded-[10px] bg-ndiarama-text px-4 py-2.5 text-xs font-semibold text-white transition hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="rounded-lg bg-ndiarama-text px-4 py-2.5 text-xs font-semibold text-white transition hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? "Inscription…" : "S'inscrire →"}
           </button>

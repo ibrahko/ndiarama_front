@@ -55,7 +55,7 @@ export default function CommunityFeatureCard({ feature, index }: Props) {
             href={feature.telegram_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-[10px] bg-[#229ED9] px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-[#1a8fc4]"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#229ED9] px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-[#1a8fc4]"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.915l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.978.644z" />
@@ -71,7 +71,7 @@ export default function CommunityFeatureCard({ feature, index }: Props) {
               <button
                 type="button"
                 onClick={() => setShowForm(true)}
-                className="inline-flex items-center justify-center gap-2 rounded-[10px] border border-[#e3d4c8] bg-[#faf6f2] px-4 py-2.5 text-xs font-semibold text-ndiarama-text transition hover:bg-white"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#e3d4c8] bg-[#faf6f2] px-4 py-2.5 text-xs font-semibold text-ndiarama-text transition hover:bg-white"
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -102,7 +102,7 @@ export default function CommunityFeatureCard({ feature, index }: Props) {
 
         {/* Confirmation inscription */}
         {subscribed && (
-          <div className="inline-flex items-center gap-2 rounded-[10px] bg-[#d4dfcc] px-4 py-2.5 text-xs font-medium text-[#2e5c10]">
+          <div className="inline-flex items-center gap-2 rounded-lg bg-[#d4dfcc] px-4 py-2.5 text-xs font-medium text-[#2e5c10]">
             <span>✓</span>
             <span>Inscrit avec succès !</span>
           </div>

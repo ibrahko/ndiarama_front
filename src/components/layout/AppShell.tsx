@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import type { AppRoute } from "../../types/shared";
+import { useSidebar } from "../../hooks/useSidebar";
 import Footer from "./Footer";
 import Header from "./Header";
 import MobileMenu from "./MobileMenu";
-import Sidebar from "./Sidebar";
+// import Sidebar from "./Sidebar";
+// NOTE : Sidebar désactivée temporairement — décommenter si le client la demande.
 
 interface AppShellProps {
   currentRoute: AppRoute;
@@ -12,18 +14,18 @@ interface AppShellProps {
   children: React.ReactNode;
 }
 
+/**
+ * Coquille principale de l'application.
+ * Gere la sidebar desktop, le menu mobile et le layout global.
+ * Utilise le hook useSidebar pour l'etat collapsed / mobileOpen.
+ */
 const AppShell: React.FC<AppShellProps> = ({
   currentRoute,
   onNavigate,
   onOpenNewsletter,
   children,
 }) => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [currentRoute]);
+  const { mobileOpen, openMobile, closeMobile } = useSidebar(currentRoute);
 
   return (
     <div className="min-h-screen bg-[#f8f1eb] text-[#3d2a22]">
@@ -34,29 +36,28 @@ const AppShell: React.FC<AppShellProps> = ({
         Aller au contenu principal
       </a>
 
-      <Sidebar
-        currentRoute={currentRoute}
-        onNavigate={onNavigate}
-        collapsed={sidebarCollapsed}
-        onToggleCollapse={() => setSidebarCollapsed((prev) => !prev)}
-      />
+      {/*
+        <Sidebar
+          currentRoute={currentRoute}
+          onNavigate={onNavigate}
+          collapsed={collapsed}
+          onToggleCollapse={toggleCollapse}
+        />
+      */}
 
       <MobileMenu
-        isOpen={mobileMenuOpen}
+        isOpen={mobileOpen}
         currentRoute={currentRoute}
         onNavigate={onNavigate}
-        onClose={() => setMobileMenuOpen(false)}
+        onClose={closeMobile}
       />
 
-      <div
-        className={`min-h-screen transition-all duration-300 ${
-          sidebarCollapsed ? "lg:pl-24" : "lg:pl-72"
-        }`}
-      >
+      {/* Sans sidebar : pas de padding-left dynamique */}
+      <div className="min-h-screen">
         <Header
           currentRoute={currentRoute}
           onNavigate={onNavigate}
-          onOpenMobileMenu={() => setMobileMenuOpen(true)}
+          onOpenMobileMenu={openMobile}
         />
 
         <main id="main-content" className="min-h-[60vh]">

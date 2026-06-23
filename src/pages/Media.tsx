@@ -4,6 +4,7 @@ import { fetchShows, fetchEpisodes, MediaShow, MediaEpisode } from "../api/media
 import MediaHero from "../components/media/MediaHero";
 import MediaShowList from "../components/media/MediaShowList";
 import MediaEpisodeList from "../components/media/MediaEpisodeList";
+import Seo from "../common/Seo";
 
 export default function Media() {
   const [shows, setShows] = useState<MediaShow[]>([]);
@@ -38,6 +39,7 @@ export default function Media() {
 
   return (
     <main className="bg-[#f8f4ef] text-ndiarama-ink">
+      <Seo title="DEL Podcast & Media" description="Ecoute les podcasts, decryptes et interviews de NDIARAMA sur les opportunites pour les jeunes africains." />
       <MediaHero />
       <MediaShowList shows={shows} />
       <MediaEpisodeList episodes={episodes} />

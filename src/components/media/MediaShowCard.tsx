@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { MediaShow } from "../../api/media";
 import MediaEpisodeCard from "./MediaEpisodeCard";
 
-const BASE = "http://127.0.0.1:8000";
-const resolveUrl = (url?: string | null) => {
-  if (!url) return null;
-  if (url.startsWith("http")) return url;
-  return `${BASE}${url}`;
-};
+import { resolveMediaUrl as resolveUrl } from "../../utils/media";
 
 interface Props {
   show: MediaShow;

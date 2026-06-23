@@ -1,3 +1,7 @@
+/**
+ * Header de l'application — logo, navigation active, bouton menu mobile.
+ * Affiché sur toutes les pages au-dessus du contenu principal.
+ */
 import React from "react";
 import type { AppRoute } from "../../types/shared";
 import { NAV_ITEMS, SITE_META } from "../../utils/constants";

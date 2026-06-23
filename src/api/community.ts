@@ -39,3 +39,21 @@ export async function fetchProgramHighlights(): Promise<ProgramHighlight[]> {
   const data: ProgramHighlight[] = await res.json();
   return data.map((p) => ({ ...p, external_link: cleanUrl(p.external_link) }));
 }
+
+export interface SocialPost {
+  id: number;
+  platform: "linkedin" | "tiktok";
+  excerpt: string;
+  url: string;
+  published_at: string;  // ISO date "YYYY-MM-DD"
+  likes: number;
+  is_active: boolean;
+  order: number;
+}
+
+/** Charge les posts reseaux sociaux depuis le backend Django. */
+export async function fetchSocialPosts(): Promise<SocialPost[]> {
+  const res = await fetch(`${BASE}/api/community/social-posts/`);
+  if (!res.ok) throw new Error("Erreur chargement posts sociaux");
+  return res.json();
+}

@@ -4,6 +4,7 @@ import { fetchServices, Service } from "../api/services";
 import ServicesHero from "../components/services/ServicesHero";
 import ServicesList from "../components/services/ServicesList";
 import ServicesCTA from "../components/services/ServicesCTA";
+import Seo from "../common/Seo";
 
 export default function Services() {
   const [services, setServices] = useState<Service[]>([]);
@@ -37,6 +38,7 @@ export default function Services() {
 
   return (
     <main className="bg-[#f8f4ef] text-ndiarama-ink">
+      <Seo title="Services & Programmes" description="Consulting, formation, coaching : decouvre comment NDIARAMA accompagne ta carriere et ton leadership." />
       <ServicesHero />
       <ServicesList services={services} />
       <ServicesCTA />
