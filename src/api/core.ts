@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'
+import api from "./client";
 
 export interface SiteSettings {
   site_name: string;
@@ -20,9 +20,8 @@ const cleanUrl = (val: string): string => {
 };
 
 export async function fetchSiteSettings(): Promise<SiteSettings> {
-  const res = await fetch(`${BASE}/api/core/settings/`);
-  if (!res.ok) throw new Error("Erreur chargement site settings");
-  const data: SiteSettings = await res.json();
+  const res = await api.get<SiteSettings>("/core/settings/");
+  const data = res.data;
   return {
     ...data,
     email:        cleanUrl(data.email),

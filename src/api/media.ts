@@ -1,4 +1,5 @@
-const BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'
+import api from "./client";
+import { unwrapList, Paginated } from "./unwrap";
 
 export interface MediaEpisode {
   id: number;
@@ -40,19 +41,16 @@ export interface MediaShow {
 }
 
 export async function fetchShows(): Promise<MediaShow[]> {
-  const res = await fetch(`${BASE}/api/media/shows/`);
-  if (!res.ok) throw new Error("Erreur chargement émissions");
-  return res.json();
+  const res = await api.get<MediaShow[] | Paginated<MediaShow>>("/media/shows/");
+  return unwrapList(res.data);
 }
 
 export async function fetchEpisodes(): Promise<MediaEpisode[]> {
-  const res = await fetch(`${BASE}/api/media/episodes/`);
-  if (!res.ok) throw new Error("Erreur chargement épisodes");
-  return res.json();
+  const res = await api.get<MediaEpisode[] | Paginated<MediaEpisode>>("/media/episodes/");
+  return unwrapList(res.data);
 }
 
 export async function fetchShowBySlug(slug: string): Promise<MediaShow> {
-  const res = await fetch(`${BASE}/api/media/shows/${slug}/`);
-  if (!res.ok) throw new Error("Émission introuvable");
-  return res.json();
+  const res = await api.get<MediaShow>(`/media/shows/${slug}/`);
+  return res.data;
 }

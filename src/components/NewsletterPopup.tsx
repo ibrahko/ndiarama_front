@@ -13,6 +13,8 @@ const NewsletterPopup = ({ forceOpen = false, onClose }: NewsletterPopupProps) =
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  // Honeypot anti-spam : champ invisible, laissé vide par les humains.
+  const [website, setWebsite] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +51,7 @@ const NewsletterPopup = ({ forceOpen = false, onClose }: NewsletterPopupProps) =
     setError(null);
 
     try {
-      const res = await subscribeNewsletter({ email, whatsapp });
+      const res = await subscribeNewsletter({ email, whatsapp, website });
 
       if (res.success) {
         setSubmitted(true);
@@ -135,6 +137,20 @@ const NewsletterPopup = ({ forceOpen = false, onClose }: NewsletterPopupProps) =
 
                 {/* Formulaire */}
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Honeypot anti-spam — invisible pour les humains */}
+                  <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+                    <label htmlFor="newsletter-website">Ne pas remplir</label>
+                    <input
+                      id="newsletter-website"
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={website}
+                      onChange={(e) => setWebsite(e.target.value)}
+                    />
+                  </div>
+
                   {/* Email */}
                   <div>
                     <label htmlFor="newsletter-email" className="block text-sm font-medium text-gray-700 mb-1.5">

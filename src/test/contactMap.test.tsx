@@ -21,8 +21,8 @@ describe("ContactMap", () => {
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
   });
 
-  it("affiche la localisation Dakar", () => {
+  it("affiche la localisation Bamako", () => {
     render(<ContactMap />);
-    expect(screen.getByText(/dakar/i)).toBeInTheDocument();
+    expect(screen.getByText(/bamako/i)).toBeInTheDocument();
   });
 });

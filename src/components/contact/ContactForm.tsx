@@ -24,6 +24,8 @@ export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  // Honeypot anti-spam : champ invisible, laissé vide par les humains.
+  const [website, setWebsite] = useState("");
 
   const validate = (): boolean => {
     const e: Errors = {};
@@ -53,7 +55,7 @@ export default function ContactForm() {
     setLoading(true);
     setServerError(null);
     try {
-      await postContact(form);
+      await postContact({ ...form, website });
       setSent(true);
     } catch (err) {
       setServerError("Une erreur est survenue. Veuillez réessayer.");
@@ -98,6 +100,20 @@ export default function ContactForm() {
       </p>
 
       <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
+
+        {/* Honeypot anti-spam — invisible pour les humains */}
+        <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+          <label htmlFor="contact-website">Ne pas remplir</label>
+          <input
+            id="contact-website"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+        </div>
 
         {/* Name + Email */}
         <div className="grid gap-5 sm:grid-cols-2">

@@ -1,4 +1,5 @@
-const BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'
+import api from "./client";
+import { unwrapList, Paginated } from "./unwrap";
 
 export interface CommunityFeature {
   id: number;
@@ -27,16 +28,18 @@ const cleanUrl = (url: string): string => {
 };
 
 export async function fetchCommunityFeatures(): Promise<CommunityFeature[]> {
-  const res = await fetch(`${BASE}/api/community/features/`);
-  if (!res.ok) throw new Error("Erreur chargement features");
-  const data: CommunityFeature[] = await res.json();
+  const res = await api.get<CommunityFeature[] | Paginated<CommunityFeature>>(
+    "/community/features/"
+  );
+  const data = unwrapList(res.data);
   return data.map((f) => ({ ...f, telegram_link: cleanUrl(f.telegram_link) }));
 }
 
 export async function fetchProgramHighlights(): Promise<ProgramHighlight[]> {
-  const res = await fetch(`${BASE}/api/community/programs/`);
-  if (!res.ok) throw new Error("Erreur chargement programmes");
-  const data: ProgramHighlight[] = await res.json();
+  const res = await api.get<ProgramHighlight[] | Paginated<ProgramHighlight>>(
+    "/community/programs/"
+  );
+  const data = unwrapList(res.data);
   return data.map((p) => ({ ...p, external_link: cleanUrl(p.external_link) }));
 }
 
@@ -53,7 +56,8 @@ export interface SocialPost {
 
 /** Charge les posts reseaux sociaux depuis le backend Django. */
 export async function fetchSocialPosts(): Promise<SocialPost[]> {
-  const res = await fetch(`${BASE}/api/community/social-posts/`);
-  if (!res.ok) throw new Error("Erreur chargement posts sociaux");
-  return res.json();
+  const res = await api.get<SocialPost[] | Paginated<SocialPost>>(
+    "/community/social-posts/"
+  );
+  return unwrapList(res.data);
 }

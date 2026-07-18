@@ -157,14 +157,14 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenNewsletter }) => {
             <div className="flex items-center gap-4">
               {SOCIAL_LINKS.map((link) => (
                 <a
-                  key={link.key}
-                  href={link.url}
+                  key={link.label}
+                  href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
                   className="text-sm text-white/70 transition hover:text-white"
                 >
-                  {link.icon ?? link.label}
+                  {link.label}
                 </a>
               ))}
             </div>
@@ -180,7 +180,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenNewsletter }) => {
           <div className="flex items-center gap-4">
             <button
               type="button"
-              onClick={() => onNavigate("mentions-legales" as AppRoute)}
+              onClick={() => onNavigate("legal")}
               className="transition hover:text-white/80"
             >
               Mentions legales
@@ -188,7 +188,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenNewsletter }) => {
             <span aria-hidden="true">·</span>
             <button
               type="button"
-              onClick={() => onNavigate("politique-confidentialite" as AppRoute)}
+              onClick={() => onNavigate("legal")}
               className="transition hover:text-white/80"
             >
               Confidentialite

@@ -51,7 +51,7 @@ export interface Episode {
   title: string;
   slug: string;
   description: string;
-  media_type: "audio" | "video";
+  media_type: "audio" | "video" | "both";
   media_url: string;
   duration: string;
   published_at: string;
@@ -61,7 +61,8 @@ export interface Episode {
 
 export interface Service {
   id: number;
-  category: "consulting" | "program" | "training";
+  // Aligné avec le backend (Service.CATEGORY_CHOICES) et api/services.ts
+  category: "consulting" | "program" | "formation";
   title: string;
   slug: string;
   short_description: string;

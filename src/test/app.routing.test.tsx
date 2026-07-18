@@ -1,10 +1,9 @@
 /**
- * Tests du routing hash de App.tsx.
- * Verifie que chaque route hash affiche la bonne page.
+ * Tests du routing de App.tsx (History API).
+ * Verifie que chaque chemin d'URL affiche la bonne page.
  */
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import App from "../App";
 
 // Mock des pages lourdes pour les tests unitaires
@@ -18,28 +17,28 @@ vi.mock("../components/NewsletterPopup", () => ({ default: () => null }));
 
 describe("App routing", () => {
   beforeEach(() => {
-    window.location.hash = "";
+    window.history.replaceState({}, "", "/");
   });
 
-  it("affiche Home par defaut (hash vide)", () => {
+  it("affiche Home par defaut (chemin /)", () => {
     render(<App />);
     expect(screen.getByText("PAGE_HOME")).toBeInTheDocument();
   });
 
-  it("affiche Media quand hash = #media", () => {
-    window.location.hash = "media";
+  it("affiche Media pour /media", () => {
+    window.history.replaceState({}, "", "/media");
     render(<App />);
     expect(screen.getByText("PAGE_MEDIA")).toBeInTheDocument();
   });
 
-  it("affiche Contact quand hash = #contact", () => {
-    window.location.hash = "contact";
+  it("affiche Contact pour /contact", () => {
+    window.history.replaceState({}, "", "/contact");
     render(<App />);
     expect(screen.getByText("PAGE_CONTACT")).toBeInTheDocument();
   });
 
-  it("fallback sur Home pour un hash inconnu", () => {
-    window.location.hash = "unknown-route-xyz";
+  it("fallback sur Home pour un chemin inconnu", () => {
+    window.history.replaceState({}, "", "/unknown-route-xyz");
     render(<App />);
     expect(screen.getByText("PAGE_HOME")).toBeInTheDocument();
   });

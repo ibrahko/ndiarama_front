@@ -1,4 +1,5 @@
-const BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'
+import api from "./client";
+import { unwrapList, Paginated } from "./unwrap";
 
 export type ServiceCategory = "consulting" | "program" | "formation";
 
@@ -46,7 +47,6 @@ export const CATEGORY_COLORS: Record<ServiceCategory, { bg: string; text: string
 };
 
 export async function fetchServices(): Promise<Service[]> {
-  const res = await fetch(`${BASE}/api/services/`);
-  if (!res.ok) throw new Error("Erreur chargement services");
-  return res.json();
+  const res = await api.get<Service[] | Paginated<Service>>("/services/");
+  return unwrapList(res.data);
 }
